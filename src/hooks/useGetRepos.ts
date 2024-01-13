@@ -5,8 +5,9 @@
 */
 import { useCallback, useState } from 'react';
 
+import { RECORDS_PER_PAGE } from '../constants/app-defaults';
+
 const API_URL = 'https://api.github.com/search/repositories';
-const RECORDS_PER_PAGE = 10;
 
 type apiOptions = {
   query: string;

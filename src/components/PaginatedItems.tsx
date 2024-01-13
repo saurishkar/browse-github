@@ -6,7 +6,6 @@ export const PaginatedItems: FC<{
   onClickPage: Function;
   className?: string;
 }> = ({ totalPages = 1, currentPage = 1, onClickPage, className = "" }): ReactElement => {
-  const [currentActiveStep, setCurrentActiveStep] = useState(0);
 
   if (totalPages === 1) return null;
 

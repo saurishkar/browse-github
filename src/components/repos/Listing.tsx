@@ -7,9 +7,10 @@ import { PaginatedItems } from '../PaginatedItems';
 import { RepoDetail } from './Detail';
 
 import { MOCK_DATA } from "../../constants/mockData";
+import { RECORDS_PER_PAGE } from '../../constants/app-defaults';
 
 export const RepoListing: FC = () => {
-  const { getRepos, loading } = useGetRepos();
+  const { getRepos, loading } = useGetRepos(RECORDS_PER_PAGE);
   const {get: getData, set: setData} = useLocalStorage("githubRepos");
 
   const [repos, setRepos] = useState([]);
@@ -49,7 +50,7 @@ export const RepoListing: FC = () => {
   };
 
   const toggleRepoVisibility = (recordId: number, value: boolean) => {
-    setVisibilityMap((currentState) => {
+    setVisibilityMap((currentState: object) => {
       return {
         ...currentState,
         [recordId]: value
@@ -57,11 +58,16 @@ export const RepoListing: FC = () => {
     })
   }
 
+  const resultStartIdx = currentPage === 1 ? 1 : (currentPage - 1) * RECORDS_PER_PAGE + 1;
+  const resultEndIdx = currentPage * RECORDS_PER_PAGE;
+
   return (
     <div className="repo-listing container w-100 justify-content-center mb-5">
+      <div className='w-50 mx-auto'>
+      {repos.length && <p className='text-center'>Showing {resultStartIdx} - {resultEndIdx} results</p>}
       {repos.map(({ id, name, full_name, description, owner }) => {
         const disabledClass = visibilityMap[id] === false ? 'opacity-25' : '';
-        return <div className={`my-5 mx-auto w-50 shadow ${disabledClass}`} key={id}>
+        return <div className={`mb-5 mx-auto shadow ${disabledClass}`} key={id}>
             <RepoDetail
               key={id}
               id={id}
@@ -80,6 +86,7 @@ export const RepoListing: FC = () => {
         onClickPage={onClickPage}
         className='justify-content-center mx-auto text-center'
       />
+      </div>
     </div>
   );
 };
