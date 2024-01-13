@@ -13,7 +13,7 @@ export const RepoDetail: FC<{
   return (
     <div className='card repo-card'>
       <div className='row'>
-        <div className='col-md-3 align-items-center justify-content-center'>
+        <div className='col-md-3 d-flex align-items-center justify-content-center'>
           <img src={owner.avatar_url} className="img-fluid" alt="User Avatar Image" />
         </div>
         <div className='col-md-7'>
@@ -22,7 +22,7 @@ export const RepoDetail: FC<{
             <p className='card-text'>{description}</p>
           </div>
         </div>
-        <div className='col-md-2 vertical-align-center my-auto'>
+        <div className='col-md-2 my-auto text-center'>
           <a role='button' title="Click this to toggle visibility of this repo" onClick={() => toggleVisibility(id, !visible)}>
             <span style={{ fontSize: "2.5rem", color }}>&#8854;</span>
           </a>
