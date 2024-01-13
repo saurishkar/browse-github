@@ -4,7 +4,8 @@ export const PaginatedItems: FC<{
   totalPages: number;
   currentPage: number;
   onClickPage: Function;
-}> = ({ totalPages = 1, currentPage = 1, onClickPage }): ReactElement => {
+  className?: string;
+}> = ({ totalPages = 1, currentPage = 1, onClickPage, className = "" }): ReactElement => {
   const [currentActiveStep, setCurrentActiveStep] = useState(0);
 
   if (totalPages === 1) return null;
@@ -17,14 +18,14 @@ export const PaginatedItems: FC<{
     onClickPage(currentPage + 1);
   };
   return (
-    <div className="pagination-container">
-      <button onClick={onClickPrevious} disabled={currentPage === 1}>
+    <div className={`pagination-container ${className}`}>
+      <button onClick={onClickPrevious} disabled={currentPage === 1} className='btn btn-sm btn-outline-dark mx-4'>
         Previous
       </button>
       <span>
         {currentPage}/{totalPages}
       </span>
-      <button onClick={onClickNext} disabled={currentPage === totalPages}>
+      <button onClick={onClickNext} disabled={currentPage === totalPages} className='btn btn-sm btn-outline-dark mx-4'>
         Next
       </button>
     </div>
