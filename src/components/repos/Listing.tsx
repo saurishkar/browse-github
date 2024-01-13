@@ -1,6 +1,7 @@
 import { FC, useState, useEffect } from 'react';
 
 import { useGetRepos } from '../../hooks/useGetRepos';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 import { PaginatedItems } from '../PaginatedItems';
 import { RepoDetail } from './Detail';
@@ -9,11 +10,13 @@ import { MOCK_DATA } from "../../constants/mockData";
 
 export const RepoListing: FC = () => {
   const { getRepos, loading } = useGetRepos();
+  const {get: getData, set: setData} = useLocalStorage("githubRepos");
+
   const [repos, setRepos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [query, setQuery] = useState();
-  const [visibilityMap, setVisibilityMap] = useState({});
+  const [visibilityMap, setVisibilityMap] = useState(() => JSON.parse(getData()) || {});
 
   const fetchRepos = ({ refetch = false } = {}) => {
     return getRepos({ query }).then((response) => {
@@ -36,6 +39,10 @@ export const RepoListing: FC = () => {
       // });
     }
   }, [currentPage]);
+
+  useEffect(() => {
+    setData(JSON.stringify(visibilityMap));
+  }, [visibilityMap]);
 
   const onClickPage = (pageNum: number) => {
     setCurrentPage(pageNum);
