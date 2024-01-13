@@ -10,8 +10,8 @@ const RECORDS_PER_PAGE = 10;
 
 type apiOptions = {
   query: string;
-  sort: string;
-  page: number;
+  sort?: string;
+  page?: number;
 };
 
 export const useGetRepos = (recordsPerPage?: number) => {
