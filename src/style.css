@@ -14,3 +14,8 @@ h1 {
   font-weight: 800;
   font-size: 1.5rem;
 }
+
+.repo-detail {
+  transition: opacity 2s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}

@@ -6,7 +6,7 @@ import './style.css';
 export const App: FC<{ name: string }> = ({ name }) => {
   return (
     <>
-      <h1 className='mx-auto text-center fs-2 my-5'>Browse GitHub</h1>
+      <h1 className='mx-auto text-center fs-2 my-5'>Browse &#128269; GitHub</h1>
       <RepoListing />
     </>
   );

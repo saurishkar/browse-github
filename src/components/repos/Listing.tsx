@@ -67,7 +67,7 @@ export const RepoListing: FC = () => {
       {repos.length && <p className='text-center'>Showing {resultStartIdx} - {resultEndIdx} results</p>}
       {repos.map(({ id, name, full_name, description, owner }) => {
         const disabledClass = visibilityMap[id] === false ? 'opacity-25' : '';
-        return <div className={`mb-5 mx-auto shadow ${disabledClass}`} key={id}>
+        return <div className={`repo-detail mb-5 mx-auto shadow ${disabledClass}`} key={id}>
             <RepoDetail
               key={id}
               id={id}
