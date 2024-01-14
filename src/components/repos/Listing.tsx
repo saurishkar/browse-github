@@ -99,7 +99,7 @@ export const RepoListing: FC = () => {
 
   return (
     <div className="repo-listing container w-100 justify-content-center mb-5">
-      <div className='w-50 mx-auto b'>
+      <div className='w-75 mx-auto b'>
         <div className='h-75 overflow-y-auto overflow-x-hidden'>{renderResults()}</div>
         <PaginatedItems
           currentPage={currentPage}
