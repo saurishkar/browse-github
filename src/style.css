@@ -19,3 +19,19 @@ h1 {
   transition: opacity 2s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
+.react-loader {
+  font-size: 6rem;
+  color: black;
+  animation: color-change 2s cubic-bezier(0.23, 1, 0.320, 1) infinite;
+}
+
+@keyframes color-change {
+  from {
+    color: black
+     /* transform: rotate(0deg); */
+  }
+  to {
+    color: lightskyblue;
+     /* transform: rotate(360deg); */
+  }
+}
