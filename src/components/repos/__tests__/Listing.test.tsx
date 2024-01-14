@@ -1,8 +1,14 @@
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, fireEvent, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react";
 import { RepoListing } from "../Listing";
 
-test("Load the Listing component to the DOM", async () => {
-    // render(<RepoListing />);
-
-    // expect(screen.findByTestId("app-title")).toHaveTextContent('Browse &#128269; GitHub');
+test("renders <RepoListing /> component", async () => {
+    const {container} = render(<RepoListing />);
+    const listingContainer = container.getElementsByClassName('repo-listing');
+    expect(listingContainer[0]).toBeInTheDocument();
 });
+
+test("renders loading state with repo listing", async () => {
+    const { container } = render(<RepoListing />);
+    const loaderElem = container.getElementsByClassName("react-loader");
+    expect(loaderElem[0]).toBeInTheDocument();
+})

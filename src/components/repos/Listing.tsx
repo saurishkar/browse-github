@@ -78,14 +78,13 @@ export const RepoListing: FC = () => {
     </h5>
 
     return <>
-      <p className='text-center'>Showing {resultStartIdx} - {resultEndIdx} results</p>
-      {repos.map(({ id, name, full_name, description, owner }) => {
+      <p className='text-center' data-testid="result-count">Showing {resultStartIdx} - {resultEndIdx} results</p>
+      {repos.map(({ id, full_name, description, owner }) => {
         const disabledClass = visibilityMap[id] === false ? 'opacity-25' : '';
         return <div className={`repo-detail mb-5 mx-auto shadow ${disabledClass}`} key={id}>
             <RepoDetail
               key={id}
               id={id}
-              name={name}
               fullName={full_name}
               owner={owner}
               description={description}
@@ -99,7 +98,7 @@ export const RepoListing: FC = () => {
 
   return (
     <div className="repo-listing container w-100 justify-content-center mb-5">
-      <div className='w-75 mx-auto b'>
+      <div className='w-75 mx-auto'>
         <div className='h-75 overflow-y-auto overflow-x-hidden'>{renderResults()}</div>
         <PaginatedItems
           currentPage={currentPage}

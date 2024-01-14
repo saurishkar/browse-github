@@ -2,18 +2,17 @@ import { FC } from 'react';
 
 export const RepoDetail: FC<{
   id: number;
-  name: string;
   fullName: string;
   owner: { avatar_url: string };
   description: string;
   visible?: boolean;
   toggleVisibility: Function
-}> = ({ id, name, fullName, owner, description, visible = true, toggleVisibility }) => {
+}> = ({ id, fullName, owner, description, visible = true, toggleVisibility }) => {
   const color = visible ? "lightgrey" : "red";
   return (
     <div className='card repo-card'>
       <div className='row'>
-        <div className='col-md-3 d-flex align-items-center justify-content-center'>
+        <div className='avatar col-md-3 d-flex align-items-center justify-content-center'>
           <img src={owner.avatar_url} className="img-fluid" alt="User Avatar Image" />
         </div>
         <div className='col-md-7'>
